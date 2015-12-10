@@ -25,3 +25,13 @@
 * RawTable：由RawTableMaster类进行管理，负责管理所有RawTable的原信息
 * Lineage：由LineageMaster类进行管理，负责一些有着前后依赖关系的文件DAG图信息的管理。
 * Journal：以上几个xxMaster都分别对应有自己的journal Context，会把对相关信息的更新和状态记录的journal日志系统中去，以便集群重启后能够从这些journal log恢复状态。同时每个journal context都会定期进行checkpoint，相当于对这些metadata定期进行snapshot的保存。
+
+
+以上每个模块都有其内部结构和对外接口，以下分别记录各个模块的一些实现细节：
+
+* [TachyonMaster RPC](TachyonMasterRPC.md)
+* [TachyonMaster Journal](TachyonMasterJournal.md)
+* [TachyonMaster FileSystemMaster](TachyonMasterFileSystemMaster.md)
+* [TachyonMaster BlockMaster](TachyonMasterBlockMaster.md)
+* [TachyonMaster RawTableMaster](TachyonMasterRawTableMaster.md)
+* [TachyonMaster LineageMaster](TachyonMasterLineageMaster.md)
