@@ -17,7 +17,7 @@
 
 ![image](../images/tachyon_master_architecture.png)
 
-从master架构图上可以看出，tachyon master这样分成6大功能模块，分别是：
+从master架构图上可以看出，tachyon master这样分成8大功能模块，分别是：
 
 * RPC Server：负责接收来自Client和Worker的rpc相应请求。Tachyon的RPC框架使用的是Thrift。
 * FileSystem：由FileSystemMaster类来进行管理，负责管理整个文件系统的namespace。
@@ -25,6 +25,8 @@
 * RawTable：由RawTableMaster类进行管理，负责管理所有RawTable的原信息
 * Lineage：由LineageMaster类进行管理，负责一些有着前后依赖关系的文件DAG图信息的管理。
 * Journal：以上几个xxMaster都分别对应有自己的journal Context，会把对相关信息的更新和状态记录的journal日志系统中去，以便集群重启后能够从这些journal log恢复状态。同时每个journal context都会定期进行checkpoint，相当于对这些metadata定期进行snapshot的保存。
+* MetricsSystem：记录对tachyon文件系统的各种访问统计信息
+* webui server：tachyon master的webui httpserver
 
 
 以上每个模块都有其内部结构和对外接口，以下分别记录各个模块的一些实现细节：
@@ -35,3 +37,4 @@
 * [TachyonMaster BlockMaster](TachyonMasterBlockMaster.md)
 * [TachyonMaster RawTableMaster](TachyonMasterRawTableMaster.md)
 * [TachyonMaster LineageMaster](TachyonMasterLineageMaster.md)
+* [TachyonMaster MetricsSystem](TachyonMasterMetricsSystem.md)
