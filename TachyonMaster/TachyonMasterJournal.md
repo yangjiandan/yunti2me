@@ -88,3 +88,12 @@ JournalReader提供如下接口：
 从```JournalReader```接口能够看出，该class能够提供获取checkpoint inputStream，获取下一个log文件的inputStream等操作，而真正回放这些inputStream中的Entry的工作，则是由```JournalTailer```完成的。
 
 因此，在Tachyon Master启动时，每个用单独Journal Context的Service（BlockMaster，FileSystemMaster等）都会启动一个线程，并通过```JournalTailer```来按照顺序读取checkpoint和log文件，并一个一个Entry的apply到Tachyon Master上。
+
+
+### Journal相关配置选项
+
+    tachyon.master.journal.folder=${tachyon.home}/journal/
+    tachyon.master.journal.formatter.class=tachyon.master.journal.ProtoBufJournalFormatter
+    tachyon.master.journal.log.size.bytes.max=10MB
+    tachyon.master.journal.tailer.shutdown.quiet.wait.time.ms=5000
+    tachyon.master.journal.tailer.sleep.time.ms=1000
