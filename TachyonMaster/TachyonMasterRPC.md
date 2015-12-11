@@ -10,7 +10,7 @@ Tachyon的RPC框架使用的是facebook贡献给apache基金会的Thrift框架�
 
 上图中，紫色的部分即为Tachyon Master中RPC的部分。Tachyon Master将各个功能模块的rpc响应组件划分的非常清晰，特定的RPC Service服务特定的RPC client的请求。在thrift中，一套特定的rpc接口由一个service来进行定义（定义在.thrift文件中），针对这套service中的接口，thrift会生成响应的server端代码和client端代码。例如，文件系统namespace相关的service，由如下.thrift说明定义：
 
-```
+```java
 service FileSystemMasterClientService extends common.TachyonService {
 
   /**
@@ -143,9 +143,9 @@ service FileSystemMasterClientService extends common.TachyonService {
 <table>
 
 <tr>
-	<td>Service</td>
-	<td>说明</td>
-	<td>源码地址</td>
+	<th>Service</th>
+	<th>说明</th>
+	<th>源码地址</th>
 </tr>
 
 <tr>
