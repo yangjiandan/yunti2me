@@ -1,3 +1,12 @@
+* [TachyonMaster](TachyonMaster/1.TachyonMaster整体架构.md)
+  * [TachyonMaster RPC](TachyonMaster/2.TachyonMasterRPC.md)
+  * [TachyonMaster Journal](TachyonMaster/3.TachyonMasterJournal.md)
+  * [TachyonMaster FileSystemMaster](TachyonMaster/4.TachyonMasterFileSystemMaster.md)
+  * [TachyonMaster BlockMaster](TachyonMaster/5.TachyonMasterBlockMaster.md)
+  * [TachyonMaster RawTableMaster](TachyonMaster/6.TachyonMasterRawTableMaster.md)
+  * [TachyonMaster LineageMaster](TachyonMaster/7.TachyonMasterLineageMaster.md)
+  * [TachyonMaster MetricsSystem](TachyonMaster/8.TachyonMasterMetricsSystem.md)
+
 # 我的tachyon源码笔记
 
 在通常的hadoop1 MapReduce作业（MR1 Job）中，数据必须经过一轮Mapper，一轮Reducer的处理过程，并将产出的结果写回到HDFS，其结果才能被下一轮的作业进一步使用和处理。在hadoop2 MapReduce作业中（MR2 Job）虽然支持DAG的计算作业，但数据在作业和作业之间的共享仍然需要经过HDFS进行中转。Apache Spark虽然可以对RDD进行cache，但也仅限于一个Spark Job之内，跨Job之间也无法很方便的共享cache在内存中的RDD数据。不仅如此，当作业的executor crash后，原本缓存在executor内存中的数据也随之丢失，需要重新计算。 如果有一个这样的分布式文件系统，它能够提供类似HDFS一样的分布式文件存储服务，同时还能够有内存级别的访问速度，那么就能很完美的解决上述碰到的问题。
